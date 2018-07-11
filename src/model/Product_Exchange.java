@@ -17,14 +17,27 @@
  */
 package model;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
 /**
  *
  * @author gruber
  */
-public class Product_Exchange extends Product {
 
+@Entity(name = "tb_product_exchange")
+@Table(name = "tb_product_exchange")
+@PrimaryKeyJoinColumn(name="id_product")
+public class Product_Exchange extends Product {
+    
     private boolean added = false;
     private int amount = 0;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_price")
     private Product_Price price;
 
     public boolean isAdded() {

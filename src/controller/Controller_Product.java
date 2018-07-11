@@ -17,9 +17,12 @@
  */
 package controller;
 
+import cache.Cache;
 import gqbd.GQBD;
+import java.sql.Date;
 import model.Product;
-import model.Product_Model_Default;
+import model.Product_Model;
+import model.Product_Price;
 import view.Container_Product;
 
 /**
@@ -31,6 +34,14 @@ public class Controller_Product {
     private Product product;
 
     public void control(Container_Product container_Product) {
+
+        GQBD.list_Products();
+        container_Product.setProducts(Cache.getProducts());
+        container_Product.updateTableProduct();
+        GQBD.list_Product_Model_Defaults();
+        container_Product.setModels(Cache.getProducts_default());
+        container_Product.updateComboModel();
+        GQBD.list_Product_prices();
 
         container_Product.getTableView_product().setOnMouseClicked((event) -> {
             product = container_Product.getTableView_product().
@@ -50,14 +61,21 @@ public class Controller_Product {
         });
 
         container_Product.getButton_register_confirm().setOnAction((event) -> {
-            container_Product.getProducts().add(new Product(
+            GQBD.insert_Product(new Product(
                     0,
-                    new model.Product_Model(0, "sdfsdgsdf", "sdfdfdsda"),
-                    "sdffgfhsdf",
-                    "sdfsdfhgfs",
-                    "tesatasd"
+                    (Product_Model) container_Product.getCombo_model().getSelectionModel().getSelectedItem(),
+                    container_Product.getField_name().getText(),
+                    container_Product.getField_description().getText(),
+                    container_Product.getField_image().getText()
             ));
+            GQBD.list_Products();
+            container_Product.setProducts(Cache.getProducts());
             container_Product.updateTableProduct();
+            container_Product.getGridPane_register().setVisible(false);
+            container_Product.getGridPane_list().setVisible(true);
+            container_Product.getField_name().clear();
+            container_Product.getField_description().clear();
+            container_Product.getField_image().clear();
         });
 
         container_Product.getButton_register_cancel().setOnAction((event) -> {
@@ -66,7 +84,6 @@ public class Controller_Product {
             container_Product.getField_name().clear();
             container_Product.getField_description().clear();
             container_Product.getField_image().clear();
-            container_Product.getField_model().clear();
         });
 
         container_Product.getButton_stock().setOnAction((event) -> {
@@ -81,8 +98,34 @@ public class Controller_Product {
         });
 
         container_Product.getButton_price().setOnAction((event) -> {
+            container_Product.getPrices().clear();
+            Cache.getProduct_Prices().forEach((price) -> {
+                if (price.getProduct().getId_product() == product.getId_product()) {
+                    container_Product.getPrices().add(price);
+                }
+            });
+            container_Product.updateTablePrice();
             container_Product.getGridPane_price().setVisible(true);
             container_Product.getGridPane_list().setVisible(false);
+        });
+
+        container_Product.getButton_price_confirm().setOnAction((event) -> {
+            GQBD.insert_Product_price(new Product_Price(
+                    0,
+                    product,
+                    Double.parseDouble(container_Product.getField_price_buy().getText()),
+                    Double.parseDouble(container_Product.getField_price_sell().getText()),
+                    new Date(System.currentTimeMillis())
+            ));
+            GQBD.list_Product_prices();
+            Cache.getProduct_Prices().forEach((price) -> {
+                if (price.getProduct().equals(product)) {
+                    container_Product.getPrices().add(price);
+                }
+            });
+            container_Product.updateTablePrice();
+            container_Product.getField_price_buy().clear();
+            container_Product.getField_price_sell().clear();
         });
 
         container_Product.getButton_price_cancel().setOnAction((event) -> {

@@ -17,6 +17,7 @@
  */
 package controller;
 
+import cache.Cache;
 import model.Person_Client;
 import gqbd.GQBD;
 import java.sql.Date;
@@ -29,55 +30,48 @@ import view.Container_Person_Client;
 public class Controller_Person_Client {
 
     public void control(Container_Person_Client container_Person_Client) {
-        
+
+        GQBD.list_Person_clients();
+        container_Person_Client.setClients(Cache.getPersons_client());
+        container_Person_Client.updateTable();
+
         container_Person_Client.getButton_register().setOnAction((event) -> {
             container_Person_Client.getGridPane_list().setVisible(false);
             container_Person_Client.getGridPane_register().setVisible(true);
         });
-        
+
         container_Person_Client.getButton_cancel().setOnAction((event) -> {
             container_Person_Client.getGridPane_list().setVisible(true);
             container_Person_Client.getGridPane_register().setVisible(false);
+            container_Person_Client.getField_birth().clear();
+            container_Person_Client.getField_cpf().clear();
+            container_Person_Client.getField_lastname().clear();
+            container_Person_Client.getField_name().clear();
+            container_Person_Client.getField_phone().clear();
         });
-        
-        container_Person_Client.getButton_confirm().setOnAction((event) -> {
-            container_Person_Client.getClients().add( new Person_Client(0, 0, "Testenildo", "Bugado", "46541651", 0, new Date(2018, 07, 07)));
-            container_Person_Client.updateTable();
-        });
-        
-    }
 
-    protected void add() {
-        try {
+        container_Person_Client.getButton_confirm().setOnAction((event) -> {
             GQBD.insert_Person_client(new Person_Client(
                     0,
                     0,
-                    "name",
-                    "lastname",
-                    "phone",
-                    0,
-                    new Date(0)
-            )
-            );
-        } catch (Exception exception) {
-            System.err.println(exception);
-        }
-    }
+                    container_Person_Client.getField_name().getText(),
+                    container_Person_Client.getField_lastname().getText(),
+                    container_Person_Client.getField_phone().getText(),
+                    Integer.parseInt(container_Person_Client.getField_cpf().getText()),
+                    Date.valueOf(container_Person_Client.getField_birth().getText())
+            ));
+            GQBD.list_Person_clients();
+            container_Person_Client.setClients(Cache.getPersons_client());
+            container_Person_Client.updateTable();
+            container_Person_Client.getGridPane_list().setVisible(true);
+            container_Person_Client.getGridPane_register().setVisible(false);
+            container_Person_Client.getField_birth().clear();
+            container_Person_Client.getField_cpf().clear();
+            container_Person_Client.getField_lastname().clear();
+            container_Person_Client.getField_name().clear();
+            container_Person_Client.getField_phone().clear();
+        });
 
-    protected void remove(Person_Client client) {
-        try {
-            GQBD.remove_Person_client(client);
-        } catch (Exception exception) {
-            System.err.println(exception);
-        }
-    }
-
-    protected void update(Person_Client client) {
-        try {
-            GQBD.remove_Person_client(client);
-        } catch (Exception exception) {
-            System.err.println(exception);
-        }
     }
 
 }

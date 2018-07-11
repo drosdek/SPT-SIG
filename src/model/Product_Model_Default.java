@@ -17,10 +17,15 @@
  */
 package model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  *
  * @author gruber
  */
+@Entity(name = "tb_product_model_default")
+@Table(name = "tb_product_model_default")
 public class Product_Model_Default extends Product_Model {
 
     private int id_default;
@@ -40,6 +45,11 @@ public class Product_Model_Default extends Product_Model {
         super(id_model, name, description);
         this.id_default = id_default;
         this.height = height;
+    }
+
+    @Override
+    public String toString() {
+        return super.getName();
     }
 
     public int getId_default() {

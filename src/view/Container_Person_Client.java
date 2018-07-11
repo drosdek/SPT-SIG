@@ -46,7 +46,7 @@ public class Container_Person_Client {
     private GridPane gridPane_register, gridPane_list;
     private TableView<Person_Client> tableView;
     private final ArrayList<TableColumn<Person_Client, String>> columns = new ArrayList();
-    private final List<Person_Client> clients = new ArrayList();
+    private List<Person_Client> clients = new ArrayList();
     private ObservableList<Person_Client> list_clients;
     private Label label_name, label_lastname, label_phone, label_cpf, label_birth;
     private TextField field_name, field_lastname, field_phone, field_cpf, field_birth;
@@ -151,7 +151,7 @@ public class Container_Person_Client {
         gridPane_list.add(button_register, 2, 1);
 
         pane.getChildren().add(gridPane_list);
-        
+
         Thread thread = new Thread(() -> {
             new Controller_Person_Client().control(this);
         });
@@ -319,6 +319,10 @@ public class Container_Person_Client {
 
     public List<Person_Client> getClients() {
         return clients;
+    }
+
+    public void setClients(List<Person_Client> clients) {
+        this.clients = clients;
     }
 
 }

@@ -17,18 +17,39 @@
  */
 package model;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 /**
  *
  * @author gruber
  */
-public class Product {
-    
+@Entity(name = "tb_product")
+@Table(name = "tb_product")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class Product implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+
+    @Column(name = "id_product")
     private int id_product;
-    
+
+    @ManyToOne
+    @JoinColumn(name = "id_model")
     private Product_Model model;
-    
+
     private String name, description, url_image;
-    
+
     private Boolean selected;
 
     public Product() {
@@ -89,5 +110,5 @@ public class Product {
     public void setSelected(Boolean selected) {
         this.selected = selected;
     }
-    
+
 }

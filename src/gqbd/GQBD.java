@@ -32,6 +32,108 @@ import model.*;
  */
 public class GQBD {
 
+    public static void list_orders() {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Cache.setOrders((ArrayList) session.createQuery("from tb_order AS Order ").list());
+        session.close();
+    }
+
+    public static void insert_order(Order order) {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(order);
+        transaction.commit();
+        session.close();
+    }
+
+    public static void alter_order(Order order) {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(order);
+        transaction.commit();
+        session.close();
+    }
+
+    public static void remove_order(Order order) {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(order);
+        transaction.commit();
+        session.close();
+    }
+
+    public static void list_Order_Model_purchases() {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Cache.setOrders_purchase((ArrayList) session.createQuery("from tb_order_model_purchase AS Order_Model_Purchase ").list());
+        session.close();
+    }
+
+    public static void insert_Order_Model_purchase(Order_Model_Purchase Order_Model_purchase) {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(Order_Model_purchase);
+        transaction.commit();
+        session.close();
+    }
+
+    public static void alter_Order_Model_purchase(Order_Model_Purchase Order_Model_purchase) {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(Order_Model_purchase);
+        transaction.commit();
+        session.close();
+    }
+
+    public static void remove_Order_Model_purchase(Order_Model_Purchase Order_Model_purchase) {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(Order_Model_purchase);
+        transaction.commit();
+        session.close();
+    }
+
+    public static void list_Order_Model_sales() {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Cache.setOrders_sale((ArrayList) session.createQuery("from tb_order_model_sale AS Order_Model_Sale ").list());
+        session.close();
+    }
+
+    public static void insert_Order_Model_sale(Order_Model_Sale Order_Model_sale) {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(Order_Model_sale);
+        transaction.commit();
+        session.close();
+    }
+
+    public static void alter_Order_Model_sale(Order_Model_Sale Order_Model_sale) {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(Order_Model_sale);
+        transaction.commit();
+        session.close();
+    }
+
+    public static void remove_Order_Model_sale(Order_Model_Sale Order_Model_sale) {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(Order_Model_sale);
+        transaction.commit();
+        session.close();
+    }
+
     public static void list_Person_clients() {
         SessionFactory factory = new Configuration().configure().buildSessionFactory();
         Session session = factory.openSession();
@@ -164,6 +266,108 @@ public class GQBD {
         Session session = factory.openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(Product);
+        transaction.commit();
+        session.close();
+    }
+
+    public static void list_Product_Model_Defaults() {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Cache.setProducts_default((ArrayList) session.createQuery("from tb_product_model_default AS Product_Model_Default  ").list());
+        session.close();
+    }
+
+    public static void insert_Product_Model_Default(Product_Model_Default Product_Model_Default) {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(Product_Model_Default);
+        transaction.commit();
+        session.close();
+    }
+
+    public static void alter_Product_Model_Default(Product_Model_Default Product_Model_Default) {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(Product_Model_Default);
+        transaction.commit();
+        session.close();
+    }
+
+    public static void remove_Product_Model_Default(Product_Model_Default Product_Model_Default) {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(Product_Model_Default);
+        transaction.commit();
+        session.close();
+    }
+
+    public static void list_Product_prices() {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Cache.setProduct_Prices((ArrayList) session.createQuery("from tb_product_price AS Product_Price ").list());
+        session.close();
+    }
+
+    public static void insert_Product_price(Product_Price Product_price) {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(Product_price);
+        transaction.commit();
+        session.close();
+    }
+
+    public static void alter_Product_price(Product_Price Product_price) {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(Product_price);
+        transaction.commit();
+        session.close();
+    }
+
+    public static void remove_Product_price(Product_Price Product_price) {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(Product_price);
+        transaction.commit();
+        session.close();
+    }
+
+    public static void list_Product_stocks() {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Cache.setProduct_Stocks((ArrayList) session.createQuery("from tb_product_stock AS Product_Stock ").list());
+        session.close();
+    }
+
+    public static void insert_Product_stock(Product_Stock Product_stock) {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(Product_stock);
+        transaction.commit();
+        session.close();
+    }
+
+    public static void alter_Product_stock(Product_Stock Product_stock) {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(Product_stock);
+        transaction.commit();
+        session.close();
+    }
+
+    public static void remove_Product_stock(Product_Stock Product_stock) {
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(Product_stock);
         transaction.commit();
         session.close();
     }

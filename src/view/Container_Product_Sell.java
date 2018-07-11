@@ -48,7 +48,7 @@ import model.Product_Exchange;
  * @author gruber
  */
 public class Container_Product_Sell {
-    
+
     private Pane pane;
     private GridPane gridPane;
     private TableView<Product_Exchange> tableView;
@@ -60,10 +60,8 @@ public class Container_Product_Sell {
     private ObservableList<Product_Exchange> list_products;
     private ObservableList<Person_Client> list_clients;
     private ObservableList<Person_Employee> list_employees;
-    private ObservableList<Person_Provider> list_providers;
-    private ComboBox comboBox_client, comboBox_provider, comboBox_employee;
-    private Label label_table, label_combo_client, label_combo_provider,
-            label_combo_employee;
+    private ComboBox comboBox_client, comboBox_employee;
+    private Label label_table, label_combo_client, label_combo_employee;
     private Button button_confirm, button_cancel;
 
     public Parent getComponent() {
@@ -75,11 +73,9 @@ public class Container_Product_Sell {
         label_table = new Label("Produtos e sua quantia: ");
         label_combo_client = new Label("Cliente: ");
         label_combo_employee = new Label("Funcionário: ");
-        label_combo_provider = new Label("Fornecedor: ");
 
         comboBox_client = new ComboBox(list_clients);
         comboBox_employee = new ComboBox(list_employees);
-        comboBox_provider = new ComboBox(list_providers);
 
         button_cancel = Cache.getMap_buttons().get("button_cancel_small").clone("Cancelar");
         button_confirm = Cache.getMap_buttons().get("button_confirm_small").clone("Confirmar");
@@ -151,10 +147,8 @@ public class Container_Product_Sell {
         gridPane.add(comboBox_client, 2, 2, 2, 1);
         gridPane.add(label_combo_employee, 2, 3);
         gridPane.add(comboBox_employee, 2, 4, 2, 1);
-        gridPane.add(label_combo_provider, 2, 5);
-        gridPane.add(comboBox_provider, 2, 6, 2, 1);
-        gridPane.add(button_cancel, 2, 7);
-        gridPane.add(button_confirm, 3, 7);
+        gridPane.add(button_cancel, 2, 5);
+        gridPane.add(button_confirm, 3, 5);
         gridPane.add(nothing(), 2, 8);
 
         pane.getChildren().add(gridPane);
@@ -181,11 +175,6 @@ public class Container_Product_Sell {
     public void updateComboEmployee() {
         list_employees = FXCollections.observableArrayList(employees);
         comboBox_employee.setItems(list_employees);
-    }
-
-    public void updateComboProvider() {
-        list_providers = FXCollections.observableArrayList(providers);
-        comboBox_provider.setItems(list_providers);
     }
 
     private Text nothing() {
@@ -240,28 +229,12 @@ public class Container_Product_Sell {
         this.list_employees = list_employees;
     }
 
-    public ObservableList<Person_Provider> getList_providers() {
-        return list_providers;
-    }
-
-    public void setList_providers(ObservableList<Person_Provider> list_providers) {
-        this.list_providers = list_providers;
-    }
-
     public ComboBox getComboBox_client() {
         return comboBox_client;
     }
 
     public void setComboBox_client(ComboBox comboBox_client) {
         this.comboBox_client = comboBox_client;
-    }
-
-    public ComboBox getComboBox_provider() {
-        return comboBox_provider;
-    }
-
-    public void setComboBox_provider(ComboBox comboBox_provider) {
-        this.comboBox_provider = comboBox_provider;
     }
 
     public ComboBox getComboBox_employee() {
@@ -286,14 +259,6 @@ public class Container_Product_Sell {
 
     public void setLabel_combo_client(Label label_combo_client) {
         this.label_combo_client = label_combo_client;
-    }
-
-    public Label getLabel_combo_provider() {
-        return label_combo_provider;
-    }
-
-    public void setLabel_combo_provider(Label label_combo_provider) {
-        this.label_combo_provider = label_combo_provider;
     }
 
     public Label getLabel_combo_employee() {

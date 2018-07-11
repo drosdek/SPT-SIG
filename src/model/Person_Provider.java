@@ -18,11 +18,16 @@
 package model;
 
 import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  *
  * @author gruber
  */
+
+@Entity(name = "tb_person_provider")
+@Table(name = "tb_person_provider")
 public class Person_Provider extends Person {
 
     private int id_provider;

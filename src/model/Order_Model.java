@@ -17,12 +17,19 @@
  */
 package model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.MappedSuperclass;
+
 /**
  *
  * @author gruber
  */
+
+@MappedSuperclass
 public class Order_Model {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_model;
 
     private String name, description;

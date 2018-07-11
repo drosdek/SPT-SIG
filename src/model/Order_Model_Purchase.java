@@ -18,20 +18,46 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author gruber
  */
+
+@Entity(name = "tb_order_model_purchase")
+@Table(name = "tb_order_model_purchase")
 public class Order_Model_Purchase extends Order_Model {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_purchase;
 
+    @ManyToOne
+    @JoinColumn(name = "id_provider")
     private Person_Provider provider;
 
+    @ManyToOne
+    @JoinColumn(name = "id_employee")
     private Person_Employee employee;
 
-    private ArrayList<Product_Exchange> products;
+    @ManyToMany
+    @JoinTable(name = "tb_product_list", joinColumns = {
+        @JoinColumn(name = "fk_list")}, inverseJoinColumns = {
+        @JoinColumn(name = "fk_product")
+    })
+    @ElementCollection
+    private List<Product_Exchange> products;
 
     private int amount;
 
@@ -82,7 +108,7 @@ public class Order_Model_Purchase extends Order_Model {
         this.employee = employee;
     }
 
-    public ArrayList<Product_Exchange> getProducts() {
+    public List<Product_Exchange> getProducts() {
         return products;
     }
 

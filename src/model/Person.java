@@ -18,22 +18,29 @@
 package model;
 
 import java.sql.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 /**
  *
  * @author gruber
  */
+
 @Entity(name = "tb_person")
 @Table(name = "tb_person")
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
+
+    @Column(name = "id_person")
     private int id_person;
 
     private String name, lastname, phone;
@@ -53,6 +60,11 @@ public class Person {
         this.phone = phone;
         this.cpf_cnpj = cpf_cnpj;
         this.birth = birth;
+    }
+
+    @Override
+    public String toString() {
+        return this.name + " " + this.lastname;
     }
 
     public int getId_person() {

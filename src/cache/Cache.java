@@ -37,6 +37,8 @@ public class Cache {
     private static ArrayList<Person_Provider> persons_provider = new ArrayList();
     private static ArrayList<Product> products = new ArrayList();
     private static ArrayList<Product_Model_Default> products_default = new ArrayList();
+    private static ArrayList<Product_Price> product_Prices = new ArrayList();
+    private static ArrayList<Product_Stock> product_Stocks = new ArrayList();
     private static ArrayList<Order_Model_Sale> orders_sale = new ArrayList();
     private static ArrayList<Order_Model_Purchase> orders_purchase = new ArrayList();
     private static Scene scene;
@@ -179,6 +181,22 @@ public class Cache {
 
     public static void setProducts(ArrayList<Product> products) {
         Cache.products = products;
+    }
+
+    public static ArrayList<Product_Price> getProduct_Prices() {
+        return product_Prices;
+    }
+
+    public static void setProduct_Prices(ArrayList<Product_Price> product_Prices) {
+        Cache.product_Prices = product_Prices;
+    }
+
+    public static ArrayList<Product_Stock> getProduct_Stocks() {
+        return product_Stocks;
+    }
+
+    public static void setProduct_Stocks(ArrayList<Product_Stock> product_Stocks) {
+        Cache.product_Stocks = product_Stocks;
     }
 
 }

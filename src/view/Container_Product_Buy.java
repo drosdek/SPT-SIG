@@ -38,7 +38,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
-import model.Person_Client;
 import model.Person_Employee;
 import model.Person_Provider;
 import model.Product_Exchange;
@@ -54,15 +53,13 @@ public class Container_Product_Buy {
     private TableView<Product_Exchange> tableView;
     private final ArrayList<TableColumn<Product_Exchange, ?>> columns = new ArrayList();
     private final List<Product_Exchange> products = new ArrayList();
-    private final List<Person_Client> clients = new ArrayList();
     private final List<Person_Provider> providers = new ArrayList();
     private final List<Person_Employee> employees = new ArrayList();
     private ObservableList<Product_Exchange> list_products;
-    private ObservableList<Person_Client> list_clients;
     private ObservableList<Person_Employee> list_employees;
     private ObservableList<Person_Provider> list_providers;
-    private ComboBox comboBox_client, comboBox_provider, comboBox_employee;
-    private Label label_table, label_combo_client, label_combo_provider,
+    private ComboBox comboBox_provider, comboBox_employee;
+    private Label label_table, label_combo_provider,
             label_combo_employee;
     private Button button_confirm, button_cancel;
 
@@ -73,11 +70,9 @@ public class Container_Product_Buy {
         gridPane = new GridPane();
 
         label_table = new Label("Produtos e sua quantia: ");
-        label_combo_client = new Label("Cliente: ");
         label_combo_employee = new Label("Funcionário: ");
         label_combo_provider = new Label("Fornecedor: ");
 
-        comboBox_client = new ComboBox(list_clients);
         comboBox_employee = new ComboBox(list_employees);
         comboBox_provider = new ComboBox(list_providers);
 
@@ -88,7 +83,8 @@ public class Container_Product_Buy {
         tableView.setPrefSize(Cache.width * 0.60, Cache.height * 0.87);
 
         TableColumn tableColumn = new TableColumn("Add");
-        tableColumn.setCellValueFactory(new PropertyValueFactory("added"));
+        tableColumn.setCellValueFactory(
+                new PropertyValueFactory("added"));
         tableColumn.setCellFactory(tc -> new CheckBoxTableCell());
 
         columns.add(tableColumn);
@@ -147,12 +143,10 @@ public class Container_Product_Buy {
         gridPane.add(nothing(), 0, 0);
         gridPane.add(label_table, 1, 1);
         gridPane.add(tableView, 1, 2, 1, 8);
-        gridPane.add(label_combo_client, 2, 1);
-        gridPane.add(comboBox_client, 2, 2, 2, 1);
-        gridPane.add(label_combo_employee, 2, 3);
-        gridPane.add(comboBox_employee, 2, 4, 2, 1);
-        gridPane.add(label_combo_provider, 2, 5);
-        gridPane.add(comboBox_provider, 2, 6, 2, 1);
+        gridPane.add(label_combo_employee, 2, 2);
+        gridPane.add(comboBox_employee, 2, 3, 2, 1);
+        gridPane.add(label_combo_provider, 2, 4);
+        gridPane.add(comboBox_provider, 2, 5, 2, 1);
         gridPane.add(button_cancel, 2, 7);
         gridPane.add(button_confirm, 3, 7);
         gridPane.add(nothing(), 2, 8);
@@ -171,11 +165,6 @@ public class Container_Product_Buy {
     public void updateTable() {
         list_products = FXCollections.observableArrayList(products);
         tableView.setItems(list_products);
-    }
-
-    public void updateComboClient() {
-        list_clients = FXCollections.observableArrayList(clients);
-        comboBox_client.setItems(list_clients);
     }
 
     public void updateComboEmployee() {
@@ -224,14 +213,6 @@ public class Container_Product_Buy {
         this.list_products = list_products;
     }
 
-    public ObservableList<Person_Client> getList_clients() {
-        return list_clients;
-    }
-
-    public void setList_clients(ObservableList<Person_Client> list_clients) {
-        this.list_clients = list_clients;
-    }
-
     public ObservableList<Person_Employee> getList_employees() {
         return list_employees;
     }
@@ -246,14 +227,6 @@ public class Container_Product_Buy {
 
     public void setList_providers(ObservableList<Person_Provider> list_providers) {
         this.list_providers = list_providers;
-    }
-
-    public ComboBox getComboBox_client() {
-        return comboBox_client;
-    }
-
-    public void setComboBox_client(ComboBox comboBox_client) {
-        this.comboBox_client = comboBox_client;
     }
 
     public ComboBox getComboBox_provider() {
@@ -278,14 +251,6 @@ public class Container_Product_Buy {
 
     public void setLabel_table(Label label_table) {
         this.label_table = label_table;
-    }
-
-    public Label getLabel_combo_client() {
-        return label_combo_client;
-    }
-
-    public void setLabel_combo_client(Label label_combo_client) {
-        this.label_combo_client = label_combo_client;
     }
 
     public Label getLabel_combo_provider() {
@@ -326,10 +291,6 @@ public class Container_Product_Buy {
 
     public List<Product_Exchange> getProducts() {
         return products;
-    }
-
-    public List<Person_Client> getClients() {
-        return clients;
     }
 
     public List<Person_Provider> getProviders() {

@@ -18,20 +18,34 @@
 package model;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author gruber
  */
+
+@Entity(name = "tb_product_stock")
+@Table(name = "tb_product_stock")
 public class Product_Stock {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_stock;
 
+    @ManyToOne
+    @JoinColumn(name = "id_product")
     private Product product;
 
     private int amount;
 
-    private Date date;
+    private Date the_date;
 
     public Product_Stock() {
     }
@@ -40,7 +54,7 @@ public class Product_Stock {
         this.id_stock = id_stock;
         this.product = product;
         this.amount = amount;
-        this.date = date;
+        this.the_date = date;
     }
 
     public int getId_stock() {
@@ -68,11 +82,11 @@ public class Product_Stock {
     }
 
     public Date getDate() {
-        return date;
+        return the_date;
     }
 
     public void setDate(Date date) {
-        this.date = date;
+        this.the_date = date;
     }
 
 }

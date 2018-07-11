@@ -18,20 +18,30 @@
 package model;
 
 import java.sql.Date;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 
 /**
  *
  * @author gruber
  */
+
+@MappedSuperclass
 public class Order {
     
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_order;
     
+    @ManyToOne
+    @JoinColumn(name = "id_model")
     private Order_Model model;
     
-    private Date date;
+    private Date the_date;
     
-    private double value;
+    private double the_value;
 
     public Order() {
     }
@@ -39,8 +49,8 @@ public class Order {
     public Order(int id_order, Order_Model model, Date date, double value) {
         this.id_order = id_order;
         this.model = model;
-        this.date = date;
-        this.value = value;
+        this.the_date = date;
+        this.the_value = value;
     }
 
     public int getId_order() {
@@ -60,19 +70,19 @@ public class Order {
     }
 
     public Date getDate() {
-        return date;
+        return the_date;
     }
 
     public void setDate(Date date) {
-        this.date = date;
+        this.the_date = date;
     }
 
     public double getValue() {
-        return value;
+        return the_value;
     }
 
     public void setValue(double value) {
-        this.value = value;
+        this.the_value = value;
     }
         
 }
