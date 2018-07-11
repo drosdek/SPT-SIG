@@ -4,10 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/gruber/NetBeansProjects/2018-05-SPT&amp;SIG/src/view/Container_Product.java</file>
-            <file>file:/home/gruber/NetBeansProjects/2018-05-SPT&amp;SIG/src/view/Container_Chart_Person.java</file>
-            <file>file:/home/gruber/NetBeansProjects/2018-05-SPT&amp;SIG/src/component/Sidebar.java</file>
+            <file>file:/home/gruber/NetBeansProjects/2018-05-SPT&amp;SIG/src/app/App.java</file>
+            <file>file:/home/gruber/NetBeansProjects/2018-05-SPT&amp;SIG/src/controller/Controller_Product.java</file>
+            <file>file:/home/gruber/NetBeansProjects/2018-05-SPT&amp;SIG/src/model/Product.java</file>
+            <file>file:/home/gruber/NetBeansProjects/2018-05-SPT&amp;SIG/src/gqbd/GQBD.java</file>
             <file>file:/home/gruber/NetBeansProjects/2018-05-SPT&amp;SIG/src/controller/Controller_Product_Buy.java</file>
-            <file>file:/home/gruber/NetBeansProjects/2018-05-SPT&amp;SIG/src/view/Container_Product_Sell.java</file>
+            <file>file:/home/gruber/NetBeansProjects/2018-05-SPT&amp;SIG/src/model/Product_Exchange.java</file>
             <file>file:/home/gruber/NetBeansProjects/2018-05-SPT&amp;SIG/src/view/Container_Product_Buy.java</file>
         </group>
     </open-files>

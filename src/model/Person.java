@@ -35,7 +35,7 @@ import javax.persistence.Table;
 @Entity(name = "tb_person")
 @Table(name = "tb_person")
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public class Person {
+public class Person implements Comparable<Person> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -65,6 +65,11 @@ public class Person {
     @Override
     public String toString() {
         return this.name + " " + this.lastname;
+    }
+    
+    @Override
+    public int compareTo(Person person) {
+        return getBirth().compareTo(person.getBirth());
     }
 
     public int getId_person() {

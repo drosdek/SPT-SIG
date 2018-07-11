@@ -17,6 +17,8 @@
  */
 package controller;
 
+import cache.Cache;
+import gqbd.GQBD;
 import java.sql.Date;
 import model.Person_Employee;
 import view.Container_Person_Employee;
@@ -29,6 +31,10 @@ public class Controller_Person_Employee {
 
     public void control(Container_Person_Employee container_Person_Employee) {
         
+        GQBD.list_Person_employees();
+        container_Person_Employee.setEmployees(Cache.getPersons_employee());
+        container_Person_Employee.updateTable();
+        
         container_Person_Employee.getButton_register().setOnAction((event) -> {
             container_Person_Employee.getGridPane_list().setVisible(false);
             container_Person_Employee.getGridPane_register().setVisible(true);
@@ -37,11 +43,40 @@ public class Controller_Person_Employee {
         container_Person_Employee.getButton_cancel().setOnAction((event) -> {
             container_Person_Employee.getGridPane_list().setVisible(true);
             container_Person_Employee.getGridPane_register().setVisible(false);
+            container_Person_Employee.getField_name().clear();
+            container_Person_Employee.getField_lastname().clear();
+            container_Person_Employee.getField_cpf().clear();
+            container_Person_Employee.getField_phone().clear();
+            container_Person_Employee.getField_birth().clear();
+            container_Person_Employee.getField_function().clear();
+            container_Person_Employee.getField_salary().clear();
         });
         
         container_Person_Employee.getButton_confirm().setOnAction((event) -> {
-            container_Person_Employee.getEmployees().add( new Person_Employee(0, "Unknow", 0.0, 0,"Testenildo", "Bugado", "46541651", 0, new Date(2018, 07, 07)));
+            GQBD.insert_Person_employee(new Person_Employee(
+                    0,
+                    container_Person_Employee.getField_function().getText(),                    
+                    Double.parseDouble(container_Person_Employee.getField_salary().getText()),
+                    0,
+                    container_Person_Employee.getField_name().getText(),
+                    container_Person_Employee.getField_lastname().getText(),
+                    container_Person_Employee.getField_phone().getText(),  
+                    Integer.parseInt(container_Person_Employee.getField_cpf().getText()),
+                    Date.valueOf(container_Person_Employee.getField_birth().getText())                                        
+            ));
+            
+        GQBD.list_Person_employees();
+            container_Person_Employee.setEmployees(Cache.getPersons_employee());
             container_Person_Employee.updateTable();
+            container_Person_Employee.getGridPane_list().setVisible(true);
+            container_Person_Employee.getGridPane_register().setVisible(false);            
+            container_Person_Employee.getField_birth().clear();
+            container_Person_Employee.getField_cpf().clear();
+            container_Person_Employee.getField_lastname().clear();
+            container_Person_Employee.getField_name().clear();
+            container_Person_Employee.getField_phone().clear();
+            container_Person_Employee.getField_salary().clear();
+            container_Person_Employee.getField_function().clear();
         });
         
     }

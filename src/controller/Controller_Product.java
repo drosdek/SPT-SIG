@@ -23,6 +23,7 @@ import java.sql.Date;
 import model.Product;
 import model.Product_Model;
 import model.Product_Price;
+import model.Product_Stock;
 import view.Container_Product;
 
 /**
@@ -41,7 +42,6 @@ public class Controller_Product {
         GQBD.list_Product_Model_Defaults();
         container_Product.setModels(Cache.getProducts_default());
         container_Product.updateComboModel();
-        GQBD.list_Product_prices();
 
         container_Product.getTableView_product().setOnMouseClicked((event) -> {
             product = container_Product.getTableView_product().
@@ -87,6 +87,14 @@ public class Controller_Product {
         });
 
         container_Product.getButton_stock().setOnAction((event) -> {
+            container_Product.getStocks().clear();
+            GQBD.list_Product_stocks();
+            Cache.getProduct_Stocks().forEach((stock) -> {
+                if (stock.getProduct().getId_product() == product.getId_product()) {
+                    container_Product.getStocks().add(stock);
+                }
+            });
+            container_Product.updateTableStock();
             container_Product.getGridPane_stock().setVisible(true);
             container_Product.getGridPane_list().setVisible(false);
         });
@@ -96,9 +104,27 @@ public class Controller_Product {
             container_Product.getGridPane_stock().setVisible(false);
             container_Product.getField_stock_amount().clear();
         });
+        
+        container_Product.getButton_stock_confirm().setOnAction((event) -> {
+            GQBD.insert_Product_stock(new Product_Stock(
+                    0,
+                    product,
+                    Integer.parseInt(container_Product.getField_stock_amount().getText()),
+                    new Date(System.currentTimeMillis())
+            ));
+            GQBD.list_Product_stocks();
+            Cache.getProduct_Stocks().forEach((stock) -> {
+                if (stock.getProduct().equals(product)) {
+                    container_Product.getStocks().add(stock);
+                }
+            });
+            container_Product.updateTableStock();
+            container_Product.getField_stock_amount().clear();
+        });
 
         container_Product.getButton_price().setOnAction((event) -> {
             container_Product.getPrices().clear();
+            GQBD.list_Product_prices();
             Cache.getProduct_Prices().forEach((price) -> {
                 if (price.getProduct().getId_product() == product.getId_product()) {
                     container_Product.getPrices().add(price);
@@ -118,6 +144,7 @@ public class Controller_Product {
                     new Date(System.currentTimeMillis())
             ));
             GQBD.list_Product_prices();
+            container_Product.getPrices().clear();
             Cache.getProduct_Prices().forEach((price) -> {
                 if (price.getProduct().equals(product)) {
                     container_Product.getPrices().add(price);

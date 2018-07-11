@@ -45,13 +45,13 @@ public class Container_Person_Employee {
     private Pane pane;
     private GridPane gridPane_register, gridPane_list;
     private Label label_name, label_lastname, label_phone, label_cpf, label_birth,
-            label_function;
+            label_function, label_salary;
     private TextField field_name, field_lastname, field_phone, field_cpf, field_birth,
-            field_function;
+            field_function, field_salary;
     private Button button_cancel, button_confirm, button_register;
     private TableView<Person_Employee> tableView = new TableView();
     private final ArrayList<TableColumn<Person_Employee, String>> columns = new ArrayList();
-    private final List<Person_Employee> employees = new ArrayList();
+    private List<Person_Employee> employees = new ArrayList();
     private ObservableList<Person_Employee> list_employees;
 
     public Container_Person_Employee() {
@@ -69,6 +69,7 @@ public class Container_Person_Employee {
         label_cpf = new Label("CPF/CPNJ");
         label_birth = new Label("Nascimento");
         label_function = new Label("Função");
+        label_salary = new Label("Salário");
 
         field_name = new TextField();
         field_lastname = new TextField();
@@ -76,6 +77,7 @@ public class Container_Person_Employee {
         field_cpf = new TextField();
         field_birth = new TextField();
         field_function = new TextField();
+        field_salary = new TextField();
 
         button_cancel = Cache.getMap_buttons().get("button_cancel_small").clone("Cancelar");
         button_confirm = Cache.getMap_buttons().get("button_confirm_small").clone("Confirmar");
@@ -84,7 +86,7 @@ public class Container_Person_Employee {
         gridPane_register.setHgap(Cache.width * 0.0146);
         gridPane_register.setVgap(Cache.height * 0.0296);
         gridPane_register.add(nothing(), 0, 0);
-        gridPane_register.add(new Text("Formulário de Empregados"), 1, 1);
+        gridPane_register.add(new Text("Formulário de Funcionários"), 1, 1);
         gridPane_register.add(label_name, 1, 3);
         gridPane_register.add(field_name, 2, 3);
         gridPane_register.add(label_lastname, 4, 3);
@@ -97,7 +99,9 @@ public class Container_Person_Employee {
         gridPane_register.add(field_birth, 2, 7);
         gridPane_register.add(label_function, 4, 7);
         gridPane_register.add(field_function, 5, 7);
-        gridPane_register.add(button_cancel, 2, 9);
+        gridPane_register.add(label_salary, 1, 9);
+        gridPane_register.add(field_salary, 2, 9);
+        gridPane_register.add(button_cancel, 4, 9);
         gridPane_register.add(button_confirm, 5, 9);
         gridPane_register.setVisible(false);
 
@@ -354,6 +358,26 @@ public class Container_Person_Employee {
 
     public List<Person_Employee> getEmployees() {
         return employees;
+    }
+
+    public Label getLabel_salary() {
+        return label_salary;
+    }
+
+    public void setLabel_salary(Label label_salary) {
+        this.label_salary = label_salary;
+    }
+
+    public TextField getField_salary() {
+        return field_salary;
+    }
+
+    public void setField_salary(TextField field_salary) {
+        this.field_salary = field_salary;
+    }
+
+    public void setEmployees(List<Person_Employee> employees) {
+        this.employees = employees;
     }
     
 }

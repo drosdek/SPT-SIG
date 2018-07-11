@@ -17,6 +17,8 @@
  */
 package controller;
 
+import cache.Cache;
+import gqbd.GQBD;
 import java.sql.Date;
 import model.Person_Provider;
 import view.Container_Person_Provider;
@@ -27,23 +29,52 @@ import view.Container_Person_Provider;
  */
 public class Controller_Person_Provider {
     
-    public void control(Container_Person_Provider container_Person_Client) {
+    public void control(Container_Person_Provider container_Person_Provider) {        
         
-        container_Person_Client.getButton_register().setOnAction((event) -> {
-            container_Person_Client.getGridPane_list().setVisible(false);
-            container_Person_Client.getGridPane_register().setVisible(true);
+        GQBD.list_Person_clients();
+        container_Person_Provider.setProviders(Cache.getPersons_provider());
+        container_Person_Provider.updateTable();
+        
+        container_Person_Provider.getButton_register().setOnAction((event) -> {
+            container_Person_Provider.getGridPane_list().setVisible(false);
+            container_Person_Provider.getGridPane_register().setVisible(true);
         });
         
-        container_Person_Client.getButton_cancel().setOnAction((event) -> {
-            container_Person_Client.getGridPane_list().setVisible(true);
-            container_Person_Client.getGridPane_register().setVisible(false);
+        container_Person_Provider.getButton_cancel().setOnAction((event) -> {
+            container_Person_Provider.getGridPane_list().setVisible(true);
+            container_Person_Provider.getGridPane_register().setVisible(false);
+            container_Person_Provider.getField_name().clear();
+            container_Person_Provider.getField_lastname().clear();
+            container_Person_Provider.getField_cpf().clear();
+            container_Person_Provider.getField_phone().clear();
+            container_Person_Provider.getField_birth().clear();
+            container_Person_Provider.getField_company().clear();            
         });
         
-        container_Person_Client.getButton_confirm().setOnAction((event) -> {
-            container_Person_Client.getProviders().add( new Person_Provider(0, "Unknow", 0, "Testenildo", "Bugado", "46541651", 0, new Date(2018, 07, 07)));
-            container_Person_Client.updateTable();
+        container_Person_Provider.getButton_confirm().setOnAction((event) -> {
+            GQBD.insert_Person_provider(new Person_Provider(
+                    0,
+                    container_Person_Provider.getField_company().getText(),
+                    0,
+                    container_Person_Provider.getField_name().getText(),
+                    container_Person_Provider.getField_lastname().getText(),                   
+                    container_Person_Provider.getField_cpf().getText(),
+                    Integer.parseInt(container_Person_Provider.getField_phone().getText()),
+                    Date.valueOf(container_Person_Provider.getField_birth().getText())                    
+            ));
+            
+            GQBD.list_Person_providers();
+            container_Person_Provider.setProviders(Cache.getPersons_provider());
+            container_Person_Provider.updateTable();
+            container_Person_Provider.getGridPane_list().setVisible(true);
+            container_Person_Provider.getGridPane_register().setVisible(false);
+            container_Person_Provider.getField_birth().clear();
+            container_Person_Provider.getField_cpf().clear();
+            container_Person_Provider.getField_lastname().clear();
+            container_Person_Provider.getField_name().clear();
+            container_Person_Provider.getField_phone().clear();
         });
-        
+
     }
     
 }

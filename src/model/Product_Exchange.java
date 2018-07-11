@@ -17,6 +17,10 @@
  */
 package model;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,32 +31,39 @@ import javax.persistence.Table;
  *
  * @author gruber
  */
-
 @Entity(name = "tb_product_exchange")
 @Table(name = "tb_product_exchange")
-@PrimaryKeyJoinColumn(name="id_product")
+@PrimaryKeyJoinColumn(name = "id_product")
 public class Product_Exchange extends Product {
-    
-    private boolean added = false;
-    private int amount = 0;
-    
+
+    private BooleanProperty added = new SimpleBooleanProperty(false);
+    private IntegerProperty amount = new SimpleIntegerProperty(0);
+
     @ManyToOne
     @JoinColumn(name = "id_price")
     private Product_Price price;
 
-    public boolean isAdded() {
+    public Product_Exchange() {
+    }
+
+    public Product_Exchange(Product_Price price, int id_product, Product_Model model, String name, String description, String url_image) {
+        super(id_product, model, name, description, url_image);
+        this.price = price;
+    }
+
+    public BooleanProperty isAdded() {
         return added;
     }
 
-    public void setAdded(boolean added) {
+    public void setAdded(BooleanProperty added) {
         this.added = added;
     }
 
-    public int getAmount() {
+    public IntegerProperty getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(IntegerProperty amount) {
         this.amount = amount;
     }
 

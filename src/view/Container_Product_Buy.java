@@ -34,10 +34,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
+import javafx.util.converter.NumberStringConverter;
 import model.Person_Employee;
 import model.Person_Provider;
 import model.Product_Exchange;
@@ -52,9 +54,9 @@ public class Container_Product_Buy {
     private GridPane gridPane;
     private TableView<Product_Exchange> tableView;
     private final ArrayList<TableColumn<Product_Exchange, ?>> columns = new ArrayList();
-    private final List<Product_Exchange> products = new ArrayList();
-    private final List<Person_Provider> providers = new ArrayList();
-    private final List<Person_Employee> employees = new ArrayList();
+    private List<Product_Exchange> products = new ArrayList();
+    private List<Person_Provider> providers = new ArrayList();
+    private List<Person_Employee> employees = new ArrayList();
     private ObservableList<Product_Exchange> list_products;
     private ObservableList<Person_Employee> list_employees;
     private ObservableList<Person_Provider> list_providers;
@@ -86,6 +88,7 @@ public class Container_Product_Buy {
         tableColumn.setCellValueFactory(
                 new PropertyValueFactory("added"));
         tableColumn.setCellFactory(tc -> new CheckBoxTableCell());
+        tableColumn.setEditable(true);
 
         columns.add(tableColumn);
 
@@ -127,7 +130,11 @@ public class Container_Product_Buy {
 
         tableColumn = new TableColumn("Quantia");
         tableColumn.setCellValueFactory(
-                new PropertyValueFactory<>("amount"));
+                new PropertyValueFactory("amount"));
+        tableColumn.setCellFactory(
+                TextFieldTableCell.<Product_Exchange, Number>forTableColumn(
+                        new NumberStringConverter()));
+        tableColumn.setEditable(true);
 
         columns.add(tableColumn);
 
@@ -136,6 +143,7 @@ public class Container_Product_Buy {
         });
 
         tableView.setItems(list_products);
+        tableView.setEditable(true);
 
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(Cache.width * 0.0146);
@@ -299,6 +307,18 @@ public class Container_Product_Buy {
 
     public List<Person_Employee> getEmployees() {
         return employees;
+    }
+
+    public void setProducts(List<Product_Exchange> products) {
+        this.products = products;
+    }
+
+    public void setProviders(List<Person_Provider> providers) {
+        this.providers = providers;
+    }
+
+    public void setEmployees(List<Person_Employee> employees) {
+        this.employees = employees;
     }
 
 }

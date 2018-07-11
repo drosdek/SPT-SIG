@@ -51,7 +51,7 @@ public class Container_Person_Provider {
     private Button button_cancel, button_confirm, button_register;
     private TableView<Person_Provider> tableView = new TableView();
     private final ArrayList<TableColumn<Person_Provider, String>> columns = new ArrayList();
-    private final List<Person_Provider> providers = new ArrayList();
+    private List<Person_Provider> providers = new ArrayList();
     private ObservableList<Person_Provider> list_providers;
 
     public Container_Person_Provider() {
@@ -60,7 +60,7 @@ public class Container_Person_Provider {
     public Parent getComponent() {
 
         pane = new Pane();
-        
+
         gridPane_register = new GridPane();
 
         label_name = new Label("Nome");
@@ -173,7 +173,7 @@ public class Container_Person_Provider {
 
         return pane;
     }
-    
+
     public void updateTable() {
         list_providers = FXCollections.observableArrayList(providers);
         tableView.setItems(list_providers);
@@ -349,6 +349,10 @@ public class Container_Person_Provider {
 
     public List<Person_Provider> getProviders() {
         return providers;
+    }
+
+    public void setProviders(List<Person_Provider> providers) {
+        this.providers = providers;
     }
 
 }
