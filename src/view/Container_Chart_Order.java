@@ -48,7 +48,7 @@ public class Container_Chart_Order {
     private XYChart.Series dataSeries_areaChart_sell, dataSeries_areaChart_buy;
     private ComboBox combo_areaChart_buy, combo_areaChart_sell;
     private Label label_areaChart_buy, label_areaChart_sell;
-    private final List<Product> products = new ArrayList();
+    private List<Product> products = new ArrayList();
     private ObservableList<Product> list_products;
 
     public Parent getComponent() {
@@ -113,4 +113,134 @@ public class Container_Chart_Order {
     private Text nothing() {
         return new Text("   ");
     }
+
+    public ScrollPane getScrollPane() {
+        return scrollPane;
+    }
+
+    public void setScrollPane(ScrollPane scrollPane) {
+        this.scrollPane = scrollPane;
+    }
+
+    public GridPane getGridPane() {
+        return gridPane;
+    }
+
+    public void setGridPane(GridPane gridPane) {
+        this.gridPane = gridPane;
+    }
+
+    public AreaChart getAreaChart_sell() {
+        return areaChart_sell;
+    }
+
+    public void setAreaChart_sell(AreaChart areaChart_sell) {
+        this.areaChart_sell = areaChart_sell;
+    }
+
+    public AreaChart getAreaChart_buy() {
+        return areaChart_buy;
+    }
+
+    public void setAreaChart_buy(AreaChart areaChart_buy) {
+        this.areaChart_buy = areaChart_buy;
+    }
+
+    public CategoryAxis getCategoryAxis_areaChart_sell() {
+        return categoryAxis_areaChart_sell;
+    }
+
+    public void setCategoryAxis_areaChart_sell(CategoryAxis categoryAxis_areaChart_sell) {
+        this.categoryAxis_areaChart_sell = categoryAxis_areaChart_sell;
+    }
+
+    public CategoryAxis getCategoryAxis_areaChart_buy() {
+        return categoryAxis_areaChart_buy;
+    }
+
+    public void setCategoryAxis_areaChart_buy(CategoryAxis categoryAxis_areaChart_buy) {
+        this.categoryAxis_areaChart_buy = categoryAxis_areaChart_buy;
+    }
+
+    public NumberAxis getNumberAxis_areaChart_sell() {
+        return numberAxis_areaChart_sell;
+    }
+
+    public void setNumberAxis_areaChart_sell(NumberAxis numberAxis_areaChart_sell) {
+        this.numberAxis_areaChart_sell = numberAxis_areaChart_sell;
+    }
+
+    public NumberAxis getNumberAxis_areaChart_buy() {
+        return numberAxis_areaChart_buy;
+    }
+
+    public void setNumberAxis_areaChart_buy(NumberAxis numberAxis_areaChart_buy) {
+        this.numberAxis_areaChart_buy = numberAxis_areaChart_buy;
+    }
+
+    public XYChart.Series getDataSeries_areaChart_sell() {
+        return dataSeries_areaChart_sell;
+    }
+
+    public void setDataSeries_areaChart_sell(XYChart.Series dataSeries_areaChart_sell) {
+        this.dataSeries_areaChart_sell = dataSeries_areaChart_sell;
+    }
+
+    public XYChart.Series getDataSeries_areaChart_buy() {
+        return dataSeries_areaChart_buy;
+    }
+
+    public void setDataSeries_areaChart_buy(XYChart.Series dataSeries_areaChart_buy) {
+        this.dataSeries_areaChart_buy = dataSeries_areaChart_buy;
+    }
+
+    public ComboBox getCombo_areaChart_buy() {
+        return combo_areaChart_buy;
+    }
+
+    public void setCombo_areaChart_buy(ComboBox combo_areaChart_buy) {
+        this.combo_areaChart_buy = combo_areaChart_buy;
+    }
+
+    public ComboBox getCombo_areaChart_sell() {
+        return combo_areaChart_sell;
+    }
+
+    public void setCombo_areaChart_sell(ComboBox combo_areaChart_sell) {
+        this.combo_areaChart_sell = combo_areaChart_sell;
+    }
+
+    public Label getLabel_areaChart_buy() {
+        return label_areaChart_buy;
+    }
+
+    public void setLabel_areaChart_buy(Label label_areaChart_buy) {
+        this.label_areaChart_buy = label_areaChart_buy;
+    }
+
+    public Label getLabel_areaChart_sell() {
+        return label_areaChart_sell;
+    }
+
+    public void setLabel_areaChart_sell(Label label_areaChart_sell) {
+        this.label_areaChart_sell = label_areaChart_sell;
+    }
+
+    public ObservableList<Product> getList_products() {
+        return list_products;
+    }
+
+    public void setList_products(ObservableList<Product> list_products) {
+        this.list_products = list_products;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+     
+    
 }
