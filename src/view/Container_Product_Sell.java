@@ -54,9 +54,9 @@ public class Container_Product_Sell {
     private TableView<Product_Exchange> tableView;
     private final ArrayList<TableColumn<Product_Exchange, ?>> columns = new ArrayList();
     private final List<Product_Exchange> products = new ArrayList();
-    private final List<Person_Client> clients = new ArrayList();
+    private List<Person_Client> clients = new ArrayList();
     private final List<Person_Provider> providers = new ArrayList();
-    private final List<Person_Employee> employees = new ArrayList();
+    private List<Person_Employee> employees = new ArrayList();
     private ObservableList<Product_Exchange> list_products;
     private ObservableList<Person_Client> list_clients;
     private ObservableList<Person_Employee> list_employees;
@@ -304,4 +304,15 @@ public class Container_Product_Sell {
     public List<Person_Employee> getEmployees() {
         return employees;
     }
+
+    public void setClients(List<Person_Client> clients) {
+        this.clients = clients;
+    }
+
+    public void setEmployees(List<Person_Employee> employees) {
+        this.employees = employees;
+    }
+    
+    
+    
 }
